@@ -16,3 +16,7 @@ Detect login attempts with the "Administrator" account and a wrong/no password.
 Dump raw packet data
 
 ```sudo snort -v -X -r snort.log.xxxxxxx```
+
+Run Snort as IPS on interfaces eth0 and eth1
+
+```sudo snort -c /etc/snort/snort.conf -q -Q --daq afpacket -i eth0:eth1 -A full```
