@@ -12,3 +12,7 @@ Use `tcpdump` to read .pcap files in the command line. Useful for when you don't
 Detect login attempts with the "Administrator" account and a wrong/no password.
 
 ```alert tcp any 21 <> any any (msg: "FAILED LOGIN"; content: "331 Password"; content: "Administrator"; sid: 1000004; rev:1;)```
+
+Dump raw packet data
+
+```sudo snort -v -X -r snort.log.xxxxxxx```
