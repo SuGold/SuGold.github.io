@@ -27,4 +27,4 @@ Run Snort as IPS on interfaces eth0 and eth1
 
 Default scan suitable for most networks.
 
-nmap -sV -sC -O <ip>
+```nmap -sV -sC -O <ip>```
