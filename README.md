@@ -20,3 +20,11 @@ Dump raw packet data
 Run Snort as IPS on interfaces eth0 and eth1
 
 ```sudo snort -c /etc/snort/snort.conf -q -Q --daq afpacket -i eth0:eth1 -A full```
+
+## Reconnaissance
+
+### NMAP
+
+Default scan suitable for most networks.
+
+nmap -sV -sC -O <ip>
