@@ -28,3 +28,19 @@ Run Snort as IPS on interfaces eth0 and eth1
 Default scan suitable for most networks.
 
 ```nmap -sV -sC -O <ip>```
+
+## CTFs
+
+### Finding flags
+
+Find flag specifying filetype and name and output errors to dev/null
+
+```find / -type f -name <flag> 2>/dev/null```
+
+## Privilege escalation
+
+### Find files with SUID permissions
+
+```find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null```
+
+
