@@ -1,13 +1,13 @@
 # The-Source
 Collection of useful knowledge, commands, and shortcuts.
 
-## Working with packets
+### Working with packets
 
 Use `tcpdump` to read .pcap files in the command line. Useful for when you don't have access to WireShark.
 
 ```tcpdump -qns 0 -X -r file.pcap```
 
-### Snort Rules
+##### Snort Rules
 
 Detect login attempts with the "Administrator" account and a wrong/no password.
 
@@ -21,25 +21,25 @@ Run Snort as IPS on interfaces eth0 and eth1
 
 ```sudo snort -c /etc/snort/snort.conf -q -Q --daq afpacket -i eth0:eth1 -A full```
 
-## Reconnaissance
+### Reconnaissance
 
-### NMAP
+##### NMAP
 
 Default scan suitable for most networks.
 
 ```nmap -sV -sC -O <ip>```
 
-## CTFs
+### CTFs
 
-### Finding flags
+##### Finding flags
 
 Find flag specifying filetype and name and output errors to dev/null
 
 ```find / -type f -name <flag> 2>/dev/null```
 
-## Privilege escalation
+### Privilege escalation
 
-### Find files with SUID permissions
+##### Find files with SUID permissions
 
 ```find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null```
 
