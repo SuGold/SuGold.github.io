@@ -39,7 +39,7 @@ Find flag specifying filetype and name and output errors to dev/null
 
 ### Privilege escalation
 
-Refer to [https://gtfobins.github.io/]([url](https://gtfobins.github.io/)) for more methods.
+Refer to [https://gtfobins.github.io/](https://gtfobins.github.io/) for more methods.
 
 ##### Find files with SUID permissions
 
