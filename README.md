@@ -39,6 +39,8 @@ Find flag specifying filetype and name and output errors to dev/null
 
 ### Privilege escalation
 
+Refer to [https://gtfobins.github.io/]([url](https://gtfobins.github.io/)) for more methods.
+
 ##### Find files with SUID permissions
 
 ```find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null```
