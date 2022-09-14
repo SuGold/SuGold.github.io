@@ -77,6 +77,8 @@ Reminders for achieving results.
 
 - Check what files you can run as sudo.
 - Check for SUID bit set.
+- Check cron jobs
+```cat /etc/crontab```
 - Check for execute permissions when taking over cron jobs.
 - Check $PATH for write privileges to any of the folder in $PATH.
 - Check if I can modify $PATH
