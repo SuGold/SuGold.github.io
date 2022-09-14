@@ -49,4 +49,12 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'```
 
+## Output formatting
+
+#### Cut
+
+```cat``` the contents of /etc/passwd and pass them through ```cut``` to extract the first field delimited by a colon
+
+ ```cat /etc/passwd | cut -d ":" -f 1```
+
 
