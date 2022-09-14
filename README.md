@@ -77,3 +77,4 @@ Reminders for achieving results.
 
 1. Check what files you can run as sudo.
 2. Check for SUID bit set.
+3. Check for execute permissions when taking over cron jobs.
