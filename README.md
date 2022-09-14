@@ -77,6 +77,7 @@ Reminders for achieving results.
 
 - Check what files you can run as sudo.
 - Check for SUID bit set.
+```find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null```
 - Check cron jobs
 ```cat /etc/crontab```
 - Check for execute permissions when taking over cron jobs.
