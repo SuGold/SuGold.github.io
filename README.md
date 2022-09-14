@@ -61,6 +61,26 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```gcc exploit.c -o exploit```
 
+### Windows
+
+#### Powershell History
+
+Check powershell history (must be run from cmd.exe)
+
+```%userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt```
+
+#### IIS
+
+Find database connection strings on the file:
+
+```type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString```
+
+#### PuTTY
+
+Retrieve stored proxy credentials, the command searches for ProxyPassword in a registry key.
+
+```type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString```
+
 ## Output formatting
 
 #### Cut
