@@ -83,3 +83,5 @@ Reminders for achieving results.
 - Check for execute permissions when taking over cron jobs.
 - Check $PATH for write privileges to any of the folder in $PATH.
 - Check if I can modify $PATH
+- Check for misconfigured NFS. If a writable share has the "no_root_squash" option set then we can leverage that.
+```cat /etc/exports```
