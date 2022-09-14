@@ -69,4 +69,9 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
  ```cat /etc/passwd | cut -d ":" -f 1```
 
+## Methodology
 
+### Privilege Escalation
+
+1. Check what files you can run as sudo.
+2. Check for SUID bit set.
