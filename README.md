@@ -1,4 +1,4 @@
-# The-Source
+# Useful commands
 Collection of useful knowledge, commands, and shortcuts.
 
 ## Working with packets
@@ -69,7 +69,9 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
  ```cat /etc/passwd | cut -d ":" -f 1```
 
-## Methodology
+# Methodology
+
+Reminders for achieving results.
 
 ### Privilege Escalation
 
