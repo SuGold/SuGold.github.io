@@ -75,6 +75,8 @@ Reminders for achieving results.
 
 ### Privilege Escalation
 
-1. Check what files you can run as sudo.
-2. Check for SUID bit set.
-3. Check for execute permissions when taking over cron jobs.
+- Check what files you can run as sudo.
+- Check for SUID bit set.
+- Check for execute permissions when taking over cron jobs.
+- Check $PATH for write privileges to any of the folder in $PATH.
+- Check if I can modify $PATH
