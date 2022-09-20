@@ -13,3 +13,4 @@ A default SYN scan holds `0` bytes in its data field.
 
 > Approximately, how many packets do you expect Nmap to send when running the command ```nmap -sS -F MACHINE_IP```? Approximate to the nearest 100, such as 100, 200, 300, etc.
 The answer is `200` packets. -F Scans the top 100 ports and each port is expected to recieve 2 SYN packets.
+sd
