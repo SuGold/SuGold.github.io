@@ -66,4 +66,6 @@ Lookup `00:02:DC` on https://macaddress.io/ the answer is `Fujitsu General Ltd`
 
 > Using this simple technique, discover which port number is reachable from the protected system.
 
-`nc -lvnp 1025` on Attacker Machine, `nc AttkIP 21` Answer is `21`
+`nc -lvnp 1025` on Attacker Machine, `nc AttkIP 21` on target machine.
+
+Answer is `21`
