@@ -1,7 +1,7 @@
 
 # Writeup for RedTeamFirewalls
 
-### Task 3
+### Task 3 Evasion via Controlling the Source MAC/IP/Port
 
 > What is the size of the IP packet when using a default Nmap stealth (SYN) scan?
 Add the size of the TCP header and the IP header to find the total size of the packet. 
@@ -36,4 +36,34 @@ Lookup `00:02:DC` on https://macaddress.io/ the answer is `Fujitsu General Ltd`
 
 `-g 53`
 
-### Task 4
+### Task 4 Evasion via Forcing Fragmentation, MTU, and Data Length
+
+> What is the size of the IP packet when running Nmap with the -f option?
+
+`8` (fragmented TCP header) + `20` (size of data fragment) = `28`
+
+> What is the maximum size of the IP packet when running Nmap with the -ff option?
+
+`16` (fragmented TCP header) + `20` (size of data fragment) = `36`
+
+> What is the maximum size of the IP packet when running Nmap with --mtu 36 option?
+
+`36` (fragmented TCP header) + `20` (size of data fragment) = `56`
+ 
+> What is the maximum size of the IP packet when running Nmap with --data-length 128 option?
+
+`128` (fragmented TCP header) + `20` (size of data fragment) = `148`
+
+### Task 5 Evasion via Modifying Header Fields
+
+> Scan the attached MS Windows machine using --ttl 2 option. How many ports appear to be open?
+
+`3`
+
+> Scan the attached MS Windows machine using the --badsum option. How many ports appear to be open?
+
+`0`
+
+> Using this simple technique, discover which port number is reachable from the protected system.
+
+`nc -lvnp 1025` on Attacker Machine, `nc AttkIP 21` Answer is `21`
