@@ -18,7 +18,7 @@ The answer is `200` packets. -F Scans the top 100 ports and each port is expecte
 
 > Approximately, how many packets do you expect Nmap to send when running the command nmap -sS -Pn -D RND,10.10.55.33,ME,RND -F MACHINE_IP? Approximate to the nearest 100, such as 100, 200, 300, etc.
 
-2 packets per port * 100 ports * 4 IPs = `800`
+2 packets per port (because of SYN scan) * 100 ports * 4 IPs = `800`
 
 > What do you expect the target to see as the source of the scan when you run the command nmap -sS -Pn --proxies 10.10.13.37 MACHINE_IP
 
