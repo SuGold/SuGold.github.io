@@ -31,3 +31,9 @@ Lookup `00:02:DC` on https://macaddress.io/ the answer is `Fujitsu General Ltd`
 > To mislead the opponent, you decided to make your port scans appear as if coming from a local access point that has the IP address 10.10.0.254. What option needs to be added to your Nmap command to spoof your address accordingly?
 
 `-S 10.10.0.254`
+
+> You decide to use Nmap to scan for open UDP ports. You notice that using nmap -sU -F MACHINE_IP to discover the open common UDP ports won’t give you any meaningful results. What do you need to add to your Nmap command to set the source port number to 53?
+
+`-g 53`
+
+### Task 4
