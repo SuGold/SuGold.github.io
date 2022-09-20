@@ -91,7 +91,7 @@ Retrieve stored proxy credentials, the command searches for ProxyPassword in a r
 
 # Methodology
 
-Reminders for achieving results.
+Reminders for when you get stuck.
 
 ### Privilege Escalation
 
