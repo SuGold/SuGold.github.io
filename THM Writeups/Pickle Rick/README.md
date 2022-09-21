@@ -13,3 +13,4 @@ Let's try running an nmap scan and see if there's any interesting ports open on 
 
 ![nmap Scan](https://i.ibb.co/88G0q6q/nmapScan.png)
 
+Looks like we have an SSH port open.
