@@ -105,3 +105,11 @@ Reminders for when you get stuck.
 - Check if I can modify $PATH
 - Check for misconfigured NFS. If a writable share has the "no_root_squash" option set then we can leverage that.
 ```cat /etc/exports```
+
+### Bypassing file upload restrictions
+
+- Turn off javascript in browser (if webapp doesn't depend on it)
+- Intercept and modify the **incoming** page with Burp.
+- Intercept and modify the **file upload** with Burp.
+- Send the file directly to the upload point.
+```curl -X POST -F "submit:<value>" -F "<file-parameter>:@<path-to-file>" <site>```
