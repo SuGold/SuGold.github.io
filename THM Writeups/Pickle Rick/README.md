@@ -1,7 +1,7 @@
 
 # Pickle Rick Writeup
 
-We first navigate to the web application. There's nothing we can click on so we'll run dirbuster to enumerate any hidden directories.
+We first navigate to the web application. There's nothing we can click on so we'll run dirb to enumerate any hidden directories.
 
 `dirb http://10.10.194.139 /usr/share/wordlists/common.txt`
 
@@ -13,4 +13,10 @@ Let's try running an nmap scan and see if there's any interesting ports open on 
 
 ![nmap Scan](https://i.ibb.co/88G0q6q/nmapScan.png)
 
-Looks like we have an SSH port open.
+Looks like we have an SSH port open, we can leverage that later after we get some credentials.
+
+Since this is an Apache server, it's safe to assume it's using PHP somewhere. Let's try running dirb again but this time with the `-X .php` option to check for PHP files.
+
+`dirb http://10.10.194.139 /usr/share/wordlists/common.txt -X .php`
+
+![Dirb Enum2](https://i.ibb.co/cCdpRDR/dirb-Enum2.png)
