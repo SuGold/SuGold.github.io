@@ -5,5 +5,5 @@ We first navigate to the web application. There's nothing we can click on so we'
 
 `dirb http://10.10.194.139 /usr/share/wordlists/common.txt`
 
-![Dirb Enum](https://ibb.co/23HByqS)
+![Dirb Enum](/Images/dirbEnum.PNG)
 
