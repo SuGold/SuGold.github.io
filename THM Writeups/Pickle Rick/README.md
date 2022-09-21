@@ -54,3 +54,43 @@ Let's try and use curl to bypass the web terminal and read those files from our 
 ![curlRead](https://i.ibb.co/q520qv1/curlRead.png)
 
 Great! We found the first flag.
+
+Checking out the other sections on the web app, we see a message that says "Only the **REAL** rick can view this page.." We can assume that there's another user we're gonna have to find. For now however, let's try and traverse directories and see what other interesting files are on the system.
+
+Let's check the home directory.
+
+`cd ../../../../home; ls -alh`
+
+Now let's check what's in rick's folder.
+
+`cd ../../../../home/rick; ls -alh`
+
+There's an ASCII file called "second ingredients", again we can't use cat. Let's try `less`
+
+`cd ../../../../home/rick; ls -alh; less "second ingredients"`
+
+And we found our second flag.
+
+Onto the last one.
+
+So previously, we learned that only the **REAL** rick can access certain pages. We'll need to escalate our privileges and see if that's good enough.
+
+`sudo -l` in the web terminal to check our current sudo privileges.
+
+> User www-data may run the following commands on ip-10-10-194-139.eu-west-1.compute.internal: (ALL) NOPASSWD: ALL
+
+Well that's convenient. We can run any command as sudo.
+
+Let's see what's in the root directory
+
+`sudo ls /root`
+
+There's a file called "3rd .txt", that's probably the flag. Let's check the contents.
+
+`sudo less /root/3rd.txt`
+
+Got it!
+
+Overall, this was a pretty fun box for a beginner. I disliked having to guess that the password was in the robots.txt file, but it does teach you to try every single possibility.
+
+
