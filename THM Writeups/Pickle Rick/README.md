@@ -20,3 +20,11 @@ Since this is an Apache server, it's safe to assume it's using PHP somewhere. Le
 `dirb http://10.10.194.139 /usr/share/wordlists/common.txt -X .php`
 
 ![Dirb Enum2](https://i.ibb.co/cCdpRDR/dirb-Enum2.png)
+
+Nice! We found a login page.
+
+Ok so we've done a decent amount of enumeration, let's go back to the index page and see if we missed anything. We'll check the page source to make sure there aren't any hidden clues.
+
+![indexSource](https://i.ibb.co/8Y6GV5M/index-Source.png)
+
+Awesome, we now have a username (R1ckRul3s) for what we can assume is the login portal we found earlier. Let's try and bruteforce it now using Burp.
