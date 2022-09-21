@@ -13,7 +13,7 @@ Let's try running an nmap scan and see if there's any interesting ports open on 
 
 ![nmap Scan](https://i.ibb.co/88G0q6q/nmapScan.png)
 
-Looks like we have an SSH port open, we can leverage that later after we get some credentials.
+Looks like we have an SSH port open, maybe we can leverage that later after we get some credentials.
 
 Since this is an Apache server, it's safe to assume it's using PHP somewhere. Let's try running dirb again but this time with the `-X .php` option to check for PHP files.
 
@@ -39,4 +39,18 @@ There was a `robots.txt` that we initially skipped over. This file normally tell
 
 We've got nothing else to go off of so let's try using that as a password.
 
-(![Command Panel](https://i.ibb.co/HD7kgm7/command-Panel.png)
+![Command Panel](https://i.ibb.co/HD7kgm7/command-Panel.png)
+
+Well, can't say it was a surprise but it worked.
+
+We now have access to a convenient web-based terminal we can execute commands on.
+
+Let's do some more recon. A simple `ls -alh` turns up two interesting files. `Sup3rS3cretPickl3Ingred.txt` and `clue.txt`
+
+`cat Sup3rS3cretPickl3Ingred.txt` and `cat clue.txt` tells us the command is disabled. Checking our permissions we can see that we don't have read permissions on those files with our current privileges and we can't `chmod` our way out of this.
+
+Let's try and use curl to bypass the web terminal and read those files from our machine.
+
+![curlRead](https://i.ibb.co/q520qv1/curlRead.png)
+
+Great! We found the first flag.
