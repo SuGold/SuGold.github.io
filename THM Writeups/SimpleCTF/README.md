@@ -58,7 +58,7 @@ Let's try and crack mitch's account using that exploit.
 
 `python2 46635.py -u http://10.10.166.73/simple/ --crack -w /usr/share/wordlists/SecLists/Passwords/Common-Credentials/best110.txt`
 
-After installing some missing modules (it's a python2 script and the using pip install on the THM Attackbox tries to install the module for python3, to fix this I used `python2 -m pip install some_module` to specify it was for python2 and not python3) we found a username, and cracked the password.
+After installing some missing modules (it's a python2 script and using pip install on the THM Attackbox defaults to trying to install the module for python3, to fix this I used `python2 -m pip install some_module` to specify it was for python2 and not python3) we found a username, and cracked the password.
 
 ![Cracked](https://i.ibb.co/tZTFTxQ/Cracked.png)
 
