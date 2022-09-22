@@ -32,7 +32,7 @@ So once inside the FTP server, we land in the root directory. `ls` shows us that
 
 Let's transfer that to our machine and read what it says.
 
-1[ForMitch](https://i.ibb.co/610pSc1/ForMitch.png)
+![ForMitch](https://i.ibb.co/610pSc1/ForMitch.png)
 
 The note says:
 
@@ -60,7 +60,31 @@ Let's try and brute-force mitch's account using that exploit.
 
 After installing some missing modules (it's a python2 script and the using pip install on the THM Attackbox tries to install the module for python3, to fix this I used `python2 -m pip install some_module` to specify it was for python2 and not python3) we found a username, and cracked the password.
 
+![Cracked](https://i.ibb.co/tZTFTxQ/Cracked.png)
 
+We can no succesfully login to the SSH server on port 2222 with the credentials we just found.
 
+> What's the user flag?
 
+`cat user.txt`
+
+> Is there any other user in the home directory? What's its name?
+
+`ls /home`
+
+> What can you leverage to spawn a privileged shell?
+
+`sudo -l`
+
+Looks like we can use `vim` to spawn a privileged shell. Let's check https://gtfobins.github.io/ for more details.
+
+`sudo vim -c ':!/bin/sh'`
+
+`cd /root/`
+
+`cat root.txt`
+
+And we're done!
+
+This was a fun box to work through as a beginner. I had trouble with the python exploit because of the missing modules, but some quick googling fixed the issue. Once we got an initial foothold through SSH, the rest of the questions were a piece of cake. Truly a great beginner box.
 
