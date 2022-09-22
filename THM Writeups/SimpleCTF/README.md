@@ -54,7 +54,7 @@ Nice! We found a CMS interface at http://10.10.166.73/simple
 
 It appears to be CMS Made Simple version 2.2.8 and it looks to be vulnerable to an SQL injection attack. More specifically, `CVE-2019-9053`
 
-Let's try and brute-force mitch's account using that exploit.
+Let's try and crack mitch's account using that exploit.
 
 `python2 46635.py -u http://10.10.166.73/simple/ --crack -w /usr/share/wordlists/SecLists/Passwords/Common-Credentials/best110.txt`
 
