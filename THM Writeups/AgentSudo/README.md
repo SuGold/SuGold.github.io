@@ -58,8 +58,78 @@ Once we modified the request we're redirected to http://10.10.15.235/agent_C_att
 > From,
 > Agent R 
 
-We can assume we have a username now (chris) which we'll use to try and access the FTP service.
+We can assume we have a username now (chris) which we'll use to try and access the FTP service. We still need the password, so let's use hydra to try and brute-force it.
 
+```hydra -v -l chris -P /usr/share/wordlists/SecLists/Passwords/Common-Credentials/best1050.txt ftp://10.10.15.235:21```
 
+Nice, we found the password `crystal`
 
+Let's login to the ftp server now.
+
+In the root directory, there are 3 files.
+
+> -rw-r--r--    1 0        0             217 Oct 29  2019 To_agentJ.txt
+> -rw-r--r--    1 0        0           33143 Oct 29  2019 cute-alien.jpg
+> -rw-r--r--    1 0        0           34842 Oct 29  2019 cutie.png
+
+Let's transfer the .txt file to our machine.
+
+`get To_agentJ.txt`
+
+It says:
+
+> Dear agent J,
+
+> All these alien like photos are fake! Agent R stored the real picture inside your directory. Your login password is somehow stored in the fake picture. It > shouldn't be a problem for you.
+
+> From,
+> Agent C
+
+Let's transfer the rest of the files to our attack box since it looks like we'll need to do some steganography.
+
+`steghide extract -sf cute-alien.jpg`
+
+We need a passphrase, which according to the note is stored in the fake picture. We'll use binwalk to solve this.
+
+`binwalk cutie.png -e`
+
+> DECIMAL       HEXADECIMAL     DESCRIPTION
+> --------------------------------------------------------------------------------
+> 0             0x0             PNG image, 528 x 528, 8-bit colormap, non-interlaced
+> 869           0x365           Zlib compressed data, best compression
+> 34562         0x8702          Zip archive data, encrypted compressed size: 98, uncompressed size: 86, name: To_agentR.txt
+> 34820         0x8804          End of Zip archive
+
+Let's unzip the file that was extracted.
+
+It's password protected. Let's use John The Ripper here to try and crack the file.
+
+`zip2john 8702.zip > crackme`
+
+and then `John crackme` gives us the password.
+
+We'll unzip the file now with 7zip.
+
+`7z x 8702.zip`
+
+Now let's check out the contents of "To_agentR.txt"
+
+> Agent C,
+
+> We need to send the picture to 'QXJlYTUx' as soon as possible!
+
+> By,
+> Agent R
+
+`QXJlYTUx` appears to be a base64 encoded string.
+
+We'll decode it and use the decoded string to extract the files in cute-alien.jpg
+
+`steghide -sf cute-alien.jpg`
+
+And now we have a "message.txt" file we can read.
+
+`cat message.txt`
+
+Nice, we have an SSH password now for `james`
 
