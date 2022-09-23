@@ -67,6 +67,17 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```hydra -v -l <user> -P <Password File> <service>://<server>:<port>```
 
+### Steganography
+
+#### Extract hidden info from png/jpg using steghide
+
+```steghide extract -sf <file>```
+
+#### Use Binwalk to extract hidden files within files
+
+```binwalk <file> -e```
+
+
 ### Windows
 
 #### Powershell History
