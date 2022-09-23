@@ -24,3 +24,17 @@ We'll check out the website first. It's very basic and the only info it gives us
 
 > From,
 > Agent R 
+
+Let's run dirb against the site and see if there's any hidden pages.
+
+`dirb http://10.10.179.163 /usr/share/wordlists/dirb/common.txt`
+
+The dirb scan tells us the website is using php.
+
+> ---- Scanning URL: http://10.10.179.163/ ----
+> + http://10.10.179.163/index.php (CODE:200|SIZE:218)  
+
+Let's run dirb again but this time with the `-X .php` option
+
+
+`dirb http://10.10.179.163 /usr/share/wordlists/dirb/common.txt -X .php`
