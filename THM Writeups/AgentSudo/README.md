@@ -13,3 +13,12 @@ We'll start with our default nmap scan.
 80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
 |_http-server-header: Apache/2.4.29 (Ubuntu)
 |_http-title: Annoucement```
+
+We'll check out the website first. It's very basic and the only info it gives us is:
+
+> Dear agents,
+
+Use your own codename as user-agent to access the site.
+
+From,
+Agent R 
