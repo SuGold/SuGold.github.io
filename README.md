@@ -61,11 +61,16 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 ```gcc exploit.c -o exploit```
 
-### Brute-forcing
+### Brute-forcing and Cracking
 
 #### Hydra brute force ftp with known username
 
 ```hydra -v -l <user> -P <Password File> <service>://<server>:<port>```
+
+#### Zip2john for cracking zips
+
+````zip2john <file> > output```
+
 
 ### Steganography
 
