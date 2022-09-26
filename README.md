@@ -1,5 +1,5 @@
 # Useful commands
-Collection of useful knowledge, commands, and shortcuts.
+Collection of useful knowledge, commands, and shortcuts, and CTF writeups.
 
 ## Working with packets
 
