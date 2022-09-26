@@ -69,7 +69,7 @@ If for example we find that python has SUID permissions, we can move to the pyth
 
 #### Zip2john for cracking zips
 
-````zip2john <file> > output```
+```zip2john <file> > output```
 
 
 ### Steganography
