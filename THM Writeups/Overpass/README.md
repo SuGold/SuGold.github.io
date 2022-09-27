@@ -25,3 +25,23 @@ If we open "login.css" it just looks like it loads a simple table, but there's a
 
 The css isn't loaded by the page, we can verify this using the dev tools and checking the network tab. I tried to edit the html to load "login.css" instead of "main.css" but that doesn't seem to get us anywhere.
 
+Let's run our dirb scan again, this time checking for html pages...
+
+We found an admin panel at http://10.10.151.177/admin.html
+
+Progress!
+
+Again, we're not supposed to brute-force. So let's see if it's vulnerable to any SQL injection. We'll use Burp to help us out.
+
+We tested various methods to try and prove that it's vulnerable to SQLi, but no dice.
+
+We notice from the page source that there is now a "login.js" script being loaded. Let's check its contents for any clues.
+
+This looks interesting:
+
+```  if (statusOrCookie === "Incorrect credentials") {
+        loginStatus.textContent = "Incorrect Credentials"
+        passwordBox.value=""
+    } else {
+        Cookies.set("SessionToken",statusOrCookie)
+        window.location = "/admin"````
