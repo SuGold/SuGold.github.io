@@ -1,6 +1,12 @@
 # Useful commands
 Collection of useful knowledge, commands, and shortcuts, and CTF writeups.
 
+## Unlock account/password reset
+
+1. Check if account is active '''sudo chage -l <username>'''
+2. Check failed login attempts '''sudo pam_tally2 -u <username>'''
+ a) Reset login attempts '''sudo pam_tally2 -u <username> -r'''
+
 ## Working with packets
 
 Use `tcpdump` to read .pcap files in the command line. Useful for when you don't have access to WireShark.
